@@ -19,9 +19,10 @@ body {
 
 .reveal {
   font-family: Ubuntu, "sans-serif";
-  font-size: 40px;
+  font-size: 36px;
   font-weight: normal;
-  color: #eee; }
+  color: #eee;
+}
 
 ::selection {
   color: #fff;
@@ -54,7 +55,8 @@ body {
   line-height: 1.2;
   letter-spacing: normal;
   text-transform: uppercase;
-  text-shadow: 2px 2px 2px #222;
+  text-shadow: #FC0 1px 0 10px;
+  background-color: #23241f;
   word-wrap: break-word; }
 
 .reveal h1 {
@@ -104,7 +106,8 @@ body {
   list-style-type: decimal; }
 
 .reveal ul {
-  list-style-type: disc; }
+  list-style-type: none;
+ }
 
 .reveal ul ul {
   list-style-type: square; }
@@ -118,6 +121,11 @@ body {
 .reveal ol ul {
   display: block;
   margin-left: 40px; }
+
+.reveal li {
+  background-color: #23241f;
+  padding: 0 1em;
+}
 
 .reveal dt {
   font-weight: bold; }
