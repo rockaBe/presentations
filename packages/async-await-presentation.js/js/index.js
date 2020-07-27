@@ -30,7 +30,10 @@ let enqueuedAPICalls = [];
 Reveal.initialize = options => {
 
 	// Create our singleton reveal.js instance
-	Object.assign( Reveal, new Deck( document.querySelector( '.reveal' ), options ) );
+	Object.assign(
+		Reveal,
+		new Deck(document.querySelector( '.reveal' ), options)
+	);
 
 	// Invoke any enqueued API calls
 	enqueuedAPICalls.map( method => method( Reveal ) );

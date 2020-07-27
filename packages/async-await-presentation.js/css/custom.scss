@@ -1,0 +1,21 @@
+/**
+ * Custom configuration.
+ */
+
+// images to be moved slightly
+img.rightBgCut {
+  position: absolute;
+  right: -30%;
+}
+
+.honk {
+  padding: 40px;
+  color: red!important;
+  position: absolute;
+  border: red;
+  z-index: 100;
+  background: black;
+  /* margin: 72px!important; */
+  top: 38%;
+  left: 12%;
+}

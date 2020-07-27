@@ -16,8 +16,80 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<h1>async / await</h1>
+					<h3>or how I started understanding the event loop</h3>
+					<img class='rightBgCut' src="assets//img/infinity.png" />
+				</section>
+				<section>
+					<h3>Do you remember the tale of refactoring mobile-skus?</h3>
+					<pre>
+						<code data-line-numbers>
+try {
+  experimentResult = await new AbTester.ExperimentResult({
+    arn: process.env.AB_TESTER_SPLITTER_LAMBDA_ARN
+  }).get(payload);
+} catch (error) {
+  if (error.code !== abTesterErrors.NOT_IN_POPULATION.code) {
+    rollbar.warning(error);
+  }
+}
+					  </code>
+					</pre>
+				</section>
+				<section>
+					<h3>How to refeactor this to simplify spec-ing this construct?</h3>
+					<pre>
+						<code data-line-numbers="3-5">
+try {
+  experimentResult = await new AbTester.ExperimentResult({
+    arn: process.env.AB_TESTER_SPLITTER_LAMBDA_ARN
+  }).get(payload);
+} catch (error) {
+  if (error.code !== abTesterErrors.NOT_IN_POPULATION.code) {
+    rollbar.warning(error);
+  }
+}
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h3>Use a new method to invoke AB-Tester and easy to mock / call </h3>
+					<pre>
+						<code data-line-numbers="2-4|6">
+const extractedFunc = () => await new AbTester.ExperimentResult({
+	arn: process.env.AB_TESTER_SPLITTER_LAMBDA_ARN
+}).get(payload);
+...
+try { experimentResult = extractedFunc(); } catch { ... }
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h3>We get errors? Why?</h3>
+					<pre>
+						<code data-line-numbers>
+const extractedFunc = () => await new AbTester.ExperimentResult({
+  arn: process.env.AB_TESTER_SPLITTER_LAMBDA_ARN
+}).get(payload);
+...
+try { experimentResult = extractedFunc(); } catch { ... }
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h3>We get errors? Why?</h3>
+					<h4 class='honk'>Wait! Isn't something missing?</h4>
+					<pre>
+						<code data-line-numbers>
+const extractedFunc = () => await new AbTester.ExperimentResult({
+  arn: process.env.AB_TESTER_SPLITTER_LAMBDA_ARN
+}).get(payload);
+...
+try { experimentResult = extractedFunc(); } catch { ... }
+						</code>
+					</pre>
+				</section>
 			</div>
 		</div>
 
