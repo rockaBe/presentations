@@ -90,6 +90,41 @@ try { experimentResult = extractedFunc(); } catch { ... }
 						</code>
 					</pre>
 				</section>
+				<section>
+					<h3>Digression</h3>
+					<h4>What is a Promise?</h4>
+					<pre>
+						<code data-line-numbers>
+const p1 = Promise.resolve(5);
+const p2 = Promise.reject(6);
+const p3 = new Promise(resolve => {
+	const user = 'my user' // db query or other async stuff
+	resolve(user);
+});
+						</code>
+					</pre>
+
+					<aside class="notes">
+						We can do pretty much everything with promises:
+						- Store the resolve function for later
+						- Attach thens to the promise (even though we haven't called resolve yet!)
+						- Use setTimeout to wait for a while
+						- Then call resolve, which will fulfill the promise and cause the thens to begin running
+
+						new Promise constructor's callback is called synchronously
+						see
+
+						with catch, we can recover from a rejection, returning a fulfilled rather than rejected promise
+						<pre>
+							<code data-line-numbers>
+								let resolve
+								new Promise(r => { resolve = r })
+								resolve()
+							</code>
+							</pre>
+					</aside>
+
+				</section>
 			</div>
 		</div>
 
